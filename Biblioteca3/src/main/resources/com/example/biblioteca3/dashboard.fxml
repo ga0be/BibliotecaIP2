@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.biblioteca3.Controllers.DashboardController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <children>
+        <VBox alignment="CENTER" layoutX="250.0" layoutY="74.0" prefHeight="450.0" prefWidth="300.0" spacing="20.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-padding: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 4);;" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="80.0">
+            <children>
+                <Label alignment="TOP_CENTER" text="Menu" textFill="#333333">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btnCadastroLivro" mnemonicParsing="false" onAction="#abrirCadastroLivro" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Cadastrar Livro" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnCadastroCliente" mnemonicParsing="false" onAction="#abrirCadastroCliente" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Cadastrar Cliente" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnCadastroEmprestimo" mnemonicParsing="false" onAction="#abrirCadastroEmprestimo" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Cadastrar Empréstimo" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnRelatorios" mnemonicParsing="false" onAction="#abrirRelatorios" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Relatórios" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnFuncionarios" mnemonicParsing="false" onAction="#abrirFuncionarios" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Funcionários" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnSair" mnemonicParsing="false" onAction="#sair" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Sair" textFill="WHITE">
+                    <font>
+                        <Font size="14.0" />
+                    </font>
+                </Button>
+            </children></VBox>
+    </children>
+</AnchorPane>
