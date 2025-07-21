@@ -6,6 +6,7 @@ import com.example.biblioteca3.Exceptions.DataInvalidaException;
 import com.example.biblioteca3.Exceptions.Emprestimo.NenhumEmprestimoException;
 import com.example.biblioteca3.Exceptions.Livro.LivroNaoEncontradoException;
 import com.example.biblioteca3.Exceptions.Livro.LivrojaExisteException;
+import com.example.biblioteca3.Exceptions.OperacaoBemSucedidaException;
 import com.example.biblioteca3.Exceptions.RepositorioCheioException;
 import com.example.biblioteca3.Negocio.ClassesBasicas.Cliente;
 import com.example.biblioteca3.Negocio.ClassesBasicas.Emprestimo;
@@ -42,12 +43,12 @@ public class Fachada {
 
 
     public void cadastrarAtendente(String nome, String cargo, String login, String senha, String cpf, String turno, double remuneracao, double horas) throws
-            ContaJaExisteException, RepositorioCheioException {
+            ContaJaExisteException, RepositorioCheioException, OperacaoBemSucedidaException{
         funcionarios.cadastrarAtendente(nome, cargo, login, senha, cpf, turno, remuneracao, horas);
     }
 
     public void cadastrarAdministrador(String nome, String cargo, String login, String senha, String cpf, double salario) throws
-            ContaJaExisteException, RepositorioCheioException {
+            ContaJaExisteException, RepositorioCheioException, OperacaoBemSucedidaException {
         funcionarios.cadastrarAdministrador(nome, cargo, login, senha, cpf, salario);
     }
 
@@ -57,6 +58,18 @@ public class Fachada {
 
     public Funcionario buscarFuncionario(int FuncionarioId) throws ContaNaoExisteException {
         return funcionarios.buscarFuncionario(FuncionarioId);
+    }
+
+    public Funcionario buscarContaPeloLogin(String login) throws ContaNaoExisteException{
+        return funcionarios.buscarContaPeloLogin(login);
+    }
+
+    public Funcionario buscarContaPeloCpf(String cpf) throws ContaNaoExisteException {
+        return funcionarios.buscarContaPeloCpf(cpf);
+    }
+
+    public Funcionario[] getListaContas(){
+        return funcionarios.getListaContas();
     }
 
     public void atualizarAdm(String nome, String cargo, String login, String senha, String cpf, int idFuncionario, double salario) throws ContaNaoExisteException, RepositorioCheioException {
@@ -87,6 +100,10 @@ public class Fachada {
 
     public Cliente buscarCliente(int id) throws ContaNaoExisteException {
         return clientes.buscarCliente(id);
+    }
+
+    public Cliente buscarClientePeloCpf(String cpf) throws ContaNaoExisteException{
+        return clientes.buscarContaPeloCpf(cpf);
     }
 
     public void atualizarCliente(String nome, int idCliente, String cpf, String telefone, String endereco, String email) throws ContaNaoExisteException {

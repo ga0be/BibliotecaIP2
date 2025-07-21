@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.biblioteca3.Controllers.DashboardController">
+<AnchorPane xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.biblioteca3.Controllers.DashBoardAtdntController"
+            prefHeight="600.0" prefWidth="800.0">
 
     <children>
         <VBox alignment="CENTER" layoutX="250.0" layoutY="74.0" prefHeight="450.0" prefWidth="300.0" spacing="20.0" style="-fx-background-color: #FFFFFF; -fx-background-radius: 10; -fx-padding: 30; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 4);;" AnchorPane.leftAnchor="250.0" AnchorPane.topAnchor="80.0">
@@ -16,27 +17,22 @@
                         <Font name="System Bold" size="20.0" />
                     </font>
                 </Label>
-                <Button fx:id="btnCadastroLivro" mnemonicParsing="false" onAction="#abrirCadastroLivro" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Livros" textFill="WHITE">
+                <Button fx:id="btnCadastroLivro" mnemonicParsing="false" onAction="#abrirCadastroLivro" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Cadastrar Livro" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnCadastroCliente" mnemonicParsing="false" onAction="#abrirCadastroCliente" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Clientes" textFill="WHITE">
+                <Button fx:id="btnCadastroCliente" mnemonicParsing="false" onAction="#abrirCadastroCliente" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Cadastrar Cliente" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
-                <Button fx:id="btnCadastroEmprestimo" mnemonicParsing="false" onAction="#abrirCadastroEmprestimo" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Empréstimos" textFill="WHITE">
+                <Button fx:id="btnCadastroEmprestimo" mnemonicParsing="false" onAction="#abrirCadastroEmprestimo" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Cadastrar Empréstimo" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>
                 </Button>
                 <Button fx:id="btnRelatorios" mnemonicParsing="false" onAction="#abrirRelatorios" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Relatórios" textFill="WHITE">
-                    <font>
-                        <Font size="14.0" />
-                    </font>
-                </Button>
-                <Button fx:id="btnFuncionarios" mnemonicParsing="false" onAction="#abrirFuncionarios" prefHeight="40.0" prefWidth="220.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Funcionários" textFill="WHITE">
                     <font>
                         <Font size="14.0" />
                     </font>

@@ -1,5 +1,8 @@
 package com.example.biblioteca3.Controllers;
 
+import com.example.biblioteca3.Exceptions.Conta.ContaNaoExisteException;
+import com.example.biblioteca3.Negocio.ClassesBasicas.Funcionario;
+import com.example.biblioteca3.Negocio.Fachada;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,41 +19,48 @@ public class LoginController {
     @FXML private TextField txtLogin;
     @FXML private PasswordField txtSenha;
     @FXML private Label lblMensagem;
+    @FXML private Button btnEntrar;
+
+    private Fachada fachada = Fachada.getInstance();
 
     @FXML
     public void entrar(ActionEvent event) {
         String login = txtLogin.getText();
         String senha = txtSenha.getText();
 
-        try {
-            String cargo = "";
+        Fachada fachada = Fachada.getInstance();
+        Funcionario auxConta = null;
+        SceneManager sceneManager = SceneManager.getInstance();
 
-            // teste
-            if (login.equals("admin") && senha.equals("123")) {
-                cargo = "admin";
-            } else if (login.equals("atendente") && senha.equals("123")) {
-                cargo = "atendente";
-            } else {
-                lblMensagem.setText("Login ou senha inválidos");
-                return;
+        try{
+            auxConta = fachada.buscarContaPeloLogin(login);
+
+            if(auxConta.getSenha().equals(senha)){
+                if(!auxConta.getAdministrador()) {
+                    //sceneManager.getPerfilClienteController().setCadastro(auxConta);
+                    //sceneManager.getPerfilClienteController().initialize(auxConta);
+                    sceneManager.changeScreen("dashboardAtendente.fxml", "Atendente - Central de Controle");
+                } else{
+                    sceneManager.changeScreen("dashboard.fxml", "Administrador - Central de Controle");
+                }
+            } else{
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setHeaderText("");
+                alert.setTitle("Problema durante o login");
+                alert.setContentText("Senha incorreta ");
+                alert.show();
             }
-
-            //  dashboard
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/com/example/bibliotecafx/dashboard.fxml")));
-            Parent root = loader.load();
-
-
-            DashboardController controller = loader.getController();
-            controller.setCargo(cargo);
-
-            Stage stage = (Stage) txtLogin.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Menu Principal");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            lblMensagem.setText("Erro ao carregar o sistema.");
+        } catch(ContaNaoExisteException e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("");
+            alert.setTitle("Problema durante o login");
+            alert.setContentText("Conta não existe");
+            alert.show();
         }
+    }
+
+    public void setFieldsNull(){
+        txtLogin.setText(null);
+        txtSenha.setText(null);
     }
 }

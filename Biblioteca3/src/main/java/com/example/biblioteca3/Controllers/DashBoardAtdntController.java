@@ -3,17 +3,17 @@ package com.example.biblioteca3.Controllers;
 import com.example.biblioteca3.Negocio.ClassesBasicas.Funcionario;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
 
-public class DashboardController {
-
-    @FXML private Button btnFuncionarios;
+public class DashBoardAtdntController {
+    @FXML
+    private Button btnFuncionarios;
     @FXML private Button btnCadastroLivro;
     @FXML private Button btnCadastroCliente;
     @FXML private Button btnCadastroEmprestimo;
@@ -30,12 +30,7 @@ public class DashboardController {
         this.cadastro = cadastro;
     }
 
-    public void setCargo(String cargo) {
-        if (!"admin".equals(cargo)) {
-            btnFuncionarios.setVisible(false);
-            btnFuncionarios.setManaged(false);
-        }
-    }
+
 
     @FXML
     public void abrirCadastroLivro() {
@@ -65,12 +60,6 @@ public class DashboardController {
                 "Visualização de relatorios");
     }
 
-    @FXML
-    public void abrirFuncionarios() {
-        SceneManager sceneManager = SceneManager.getInstance();
-        sceneManager.changeScreen("adminfuncionarios.fxml",
-                "Gerenciador de funcionarios");
-    }
 
     @FXML
     public void sair() {
@@ -82,5 +71,4 @@ public class DashboardController {
     }
 
 
-    }
-
+}

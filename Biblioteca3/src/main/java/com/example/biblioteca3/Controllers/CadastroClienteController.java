@@ -1,8 +1,15 @@
 package com.example.biblioteca3.Controllers;
 
+import com.example.biblioteca3.Exceptions.Conta.ContaNaoExisteException;
+import com.example.biblioteca3.Negocio.ClassesBasicas.Cliente;
+import com.example.biblioteca3.Negocio.ClassesBasicas.Funcionario;
+import com.example.biblioteca3.Negocio.Fachada;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
@@ -23,6 +30,15 @@ public class CadastroClienteController {
     private TextField txtTelefone;
     @FXML
     private TextField txtEmail;
+
+    @FXML
+    private Button btnPesquisarcpf;
+
+    @FXML
+    private TextField cpflabel;
+
+    @FXML
+    private ListView<String> ListaClientes;
 
     @FXML
     public void salvarCliente() {
@@ -78,5 +94,27 @@ public class CadastroClienteController {
             erro.showAndWait();
         }
     }
+
+    @FXML
+    void buscarPorCpf(ActionEvent event) {
+       Cliente auxConta = null;
+        try {
+            auxConta = Fachada.getInstance().buscarClientePeloCpf(cpflabel.getText());
+        } catch (ContaNaoExisteException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erro ao realizar a busca");
+            alert.setHeaderText("");
+            alert.setContentText(e.getMessage());
+            alert.show();
+        }
+
+        if(auxConta != null){
+            ListaClientes.getItems().clear();
+            ListaClientes.getItems().add(auxConta.adicionarNaLista());
+        }
+    }
+
+    @FXML
+    public void Pesquisarcpf(ActionEvent event) {}
 
 }

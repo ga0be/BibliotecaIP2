@@ -14,6 +14,8 @@ public interface RepositorioFucionarioInterface {
 
     public Funcionario buscarFuncionario(int idFuncionario) throws ContaNaoExisteException;
 
+    public Funcionario buscarPeloLogin(String login) throws ContaNaoExisteException;
+
     public void atualizarFuncionario(Funcionario conta) throws ContaNaoExisteException;
 
 

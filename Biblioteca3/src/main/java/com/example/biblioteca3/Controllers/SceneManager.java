@@ -18,6 +18,12 @@ public class SceneManager {
     private Scene dashboard;
     private Scene login;
     private Scene relatorios;
+    private Scene dashboardAtendente;
+    private Scene perfilcliente;
+    private Scene telacadastroAdm;
+    private Scene telacadastroAtdnt;
+    private Scene perfilfuncionario;
+    private Scene perfilatdnt;
 
     private AdminFuncionariosController adminfuncionariosController;
     private CadastroClienteController cadastroClienteController;
@@ -26,6 +32,12 @@ public class SceneManager {
     private DashboardController dashboardController;
     private LoginController loginController;
     private RelatoriosController relatoriosController;
+    private DashBoardAtdntController dashboardatdntController;
+    private PerfilClienteController perfilclienteController;
+    private TelaCadastroAdmController telaCadastroAdmController;
+    private TelaCadastroAtdntController telaCadastroAtdntController;
+    private PerfilAdmController perfilfuncionarioController;
+
 
 
     private SceneManager(){
@@ -62,6 +74,18 @@ public class SceneManager {
 
     public Scene getRelatorios(){ return this.relatorios; }
 
+    public Scene getDashboardAtendente(){ return this.dashboardAtendente; }
+
+    public Scene getPerfilcliente(){ return this.perfilcliente; }
+
+    public Scene getTelacadastroAdm(){ return this.telacadastroAdm; }
+
+    public Scene getTelacadastroAtdnt(){ return this.telacadastroAtdnt; }
+
+    public Scene getPerfilAdm(){ return this.perfilfuncionario; }
+
+    public Scene getPerfilatdnt(){ return this.perfilatdnt; }
+
 
 
 
@@ -77,9 +101,21 @@ public class SceneManager {
 
     public DashboardController getDashboardController() { return this.dashboardController; }
 
-    public LoginController getLoginContoller(){ return this.loginController; }
+    public LoginController getLoginController(){ return this.loginController; }
 
     public RelatoriosController getRelatoriosController(){ return this.relatoriosController; }
+
+    public DashBoardAtdntController getDashboardatdntController(){ return this.dashboardatdntController; }
+
+    public PerfilClienteController getPerfilclienteController() { return this.perfilclienteController; }
+
+    public TelaCadastroAdmController getTelaCadastroAdmController() { return this.telaCadastroAdmController; }
+
+    public TelaCadastroAtdntController getTelaCadastroAtdntController() { return this.telaCadastroAtdntController; }
+
+    public PerfilAdmController getPerfilAdmController() { return this.perfilfuncionarioController; }
+
+
 
 
 
@@ -116,6 +152,27 @@ public class SceneManager {
             this.relatorios = new Scene(fxmlLoader.load());
             this.relatoriosController = fxmlLoader.getController();
 
+            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/biblioteca3/dashboardAtendente.fxml"));
+            this.dashboardAtendente = new Scene(fxmlLoader.load());
+            this.dashboardatdntController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/biblioteca3/PerfilCliente.fxml"));
+            this.perfilcliente= new Scene(fxmlLoader.load());
+            this.perfilclienteController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/biblioteca3/TelaCadastroAdm.fxml"));
+            this.telacadastroAdm = new Scene(fxmlLoader.load());
+            this.telaCadastroAdmController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/biblioteca3/TelaCadastroAtdnt.fxml"));
+            this.telacadastroAtdnt = new Scene(fxmlLoader.load());
+            this.telaCadastroAtdntController = fxmlLoader.getController();
+
+            fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/biblioteca3/PerfilFuncionario.fxml"));
+            this.perfilfuncionario= new Scene(fxmlLoader.load());
+            this.perfilfuncionarioController = fxmlLoader.getController();
+
+
 
         } catch(IOException e){
             e.printStackTrace();
@@ -134,6 +191,12 @@ public class SceneManager {
             case "dashboard.fxml" -> stage.setScene(this.dashboard);
             case "login.fxml" -> stage.setScene(this.login);
             case "relatorios.fxml" -> stage.setScene(this.relatorios);
+            case "dashboardAtendente.fxml" -> stage.setScene(this.dashboardAtendente);
+            case "PerfilCliente.fxml" -> stage.setScene(this.perfilcliente);
+            case "TelaCadastroAdm.fxml" -> stage.setScene(this.telacadastroAdm);
+            case "TelaCadastroAtdnt.fxml" -> stage.setScene(this.telacadastroAtdnt);
+            case "PerfilFuncionario.fxml" -> stage.setScene(this.perfilfuncionario);
+            case "perfilAtdnt.fxml" -> stage.setScene(this.perfilatdnt);
             default -> {
                 System.out.println("Erro ao trocar de tela");
                 System.exit(0);

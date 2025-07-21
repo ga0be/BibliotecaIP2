@@ -6,6 +6,7 @@ import com.example.biblioteca3.Exceptions.Conta.ContaJaExisteException;
 import com.example.biblioteca3.Exceptions.Conta.ContaNaoExisteException;
 import com.example.biblioteca3.Exceptions.RepositorioCheioException;
 import com.example.biblioteca3.Negocio.ClassesBasicas.Cliente;
+import com.example.biblioteca3.Negocio.ClassesBasicas.Funcionario;
 
 public class CadastroCliente {
 
@@ -39,6 +40,10 @@ public class CadastroCliente {
 
     public Cliente buscarCliente(int id) throws ContaNaoExisteException{
         return this.repositorio.buscarCliente(id);
+    }
+
+    public Cliente buscarContaPeloCpf(String cpf) throws ContaNaoExisteException {
+        return repositorio.buscarPeloCpf(cpf);
     }
 
     public void atualizarCliente(String nome, int idCliente, String cpf, String telefone, String endereco, String email) throws ContaNaoExisteException {

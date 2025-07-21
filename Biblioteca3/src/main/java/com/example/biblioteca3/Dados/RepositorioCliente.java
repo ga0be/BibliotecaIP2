@@ -40,10 +40,20 @@ public class RepositorioCliente implements RepositorioClienteInterface {
 
     private void buscarCpfCliente(String cpf) throws ContaJaExisteException{
         for(int i = 0; i < this.clientesIndex; i++){
-            if(this.clientes[i].getCpf().equals(cpf)){
+            if( this.clientes[i].getCpf().equals(cpf)){
                 throw new ContaJaExisteException();
             }
         }
+    }
+
+
+    public Cliente buscarPeloCpf(String cpf) throws  ContaNaoExisteException{
+        for(int i = 0; i < this.clientesIndex; i++){
+            if(this.clientes[i].getCpf().equals(cpf)){
+                return clientes[i];
+            }
+        }
+        throw new ContaNaoExisteException();
     }
 
     private int buscarIndexCliente(int id) throws ContaNaoExisteException {

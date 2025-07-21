@@ -22,6 +22,8 @@ public abstract class Funcionario {
         this.idFuncionario = idFuncionario;
     }
 
+    public Funcionario(){}
+
     public String getNome() {
         return Nome;
     }
@@ -75,6 +77,13 @@ public abstract class Funcionario {
         return Objects.equals(getNome(), that.getNome()) && Objects.equals(getCargo(), that.getCargo()) && Objects.equals(getLogin(), that.getLogin()) && Objects.equals(getSenha(), that.getSenha());
     }
 
+    public boolean compareTo(Funcionario funcionario){
+        if(this.idFuncionario == funcionario.idFuncionario){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(getNome(), getCargo(), getLogin(), getSenha());
@@ -86,6 +95,14 @@ public abstract class Funcionario {
             return "Administrador: " + this.getNome() + "\nID: " + this.getIdFuncionario() + "\nCPF: " + this.getCpf() + "\nCargo: " + this.getCargo() + "\nLogin: " + this.getLogin();
         } else {
             return "Atendente: " + this.getNome()+ "\nID: " + this.getIdFuncionario() + "\nCPF: " + this.getCpf() + "\nCargo: " + this.getCargo() + "\nLogin: " + this.getLogin();
+        }
+    }
+
+    public String adicionarNaLista(){
+        if(this.administrador) {
+            return "Administrador: " + this.getNome() + " / ID: " + this.getIdFuncionario() + " / CPF: " + this.getCpf();
+        } else {
+            return "Cliente: " + this.getNome()+ " / ID: " + this.getIdFuncionario() + " / CPF: " + this.getCpf();
         }
     }
 }

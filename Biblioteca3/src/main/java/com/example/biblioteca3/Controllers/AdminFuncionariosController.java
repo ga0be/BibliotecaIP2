@@ -1,8 +1,14 @@
 package com.example.biblioteca3.Controllers;
 
+import com.example.biblioteca3.Exceptions.Conta.ContaNaoExisteException;
+import com.example.biblioteca3.Exceptions.OperacaoBemSucedidaException;
 import com.example.biblioteca3.Negocio.ClassesBasicas.Funcionario;
+import com.example.biblioteca3.Negocio.Fachada;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,79 +23,67 @@ import java.util.Objects;
 public class AdminFuncionariosController {
 
     @FXML
-    private TextField txtNomeFuncionario;
-    @FXML private TextField txtLoginFuncionario;
-    @FXML private PasswordField txtSenhaFuncionario;
-    @FXML private TextField txtCargoFuncionario;
-
-    @FXML private TableView<Funcionario> tabelaFuncionarios;
-    @FXML private TableColumn<Funcionario, String> colNome;
-    @FXML private TableColumn<Funcionario, String> colLogin;
-    @FXML private TableColumn<Funcionario, String> colSenha;
-    @FXML private TableColumn<Funcionario, String> colCargo;
-
-    private final ObservableList<Funcionario> listaFuncionarios = FXCollections.observableArrayList();
+    private Button btnVoltar;
 
     @FXML
-    public void initialize() {
-        colNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-        colLogin.setCellValueFactory(new PropertyValueFactory<>("login"));
-        colSenha.setCellValueFactory(new PropertyValueFactory<>("senha"));
-        colCargo.setCellValueFactory(new PropertyValueFactory<>("cargo"));
+    private Button btnAddAdm;
 
-        tabelaFuncionarios.setItems(listaFuncionarios);
+    @FXML
+    private Button btnAddAtdnt;
+
+    @FXML
+    private ListView<String> ListaUsuarios;
+
+    private Funcionario[] contas;
+
+    @FXML
+    public void voltar(){
+        SceneManager sceneManager = SceneManager.getInstance();
+        sceneManager.changeScreen("dashboard.fxml",
+                "Sistema De Biblioteca - Administrador");
     }
 
-    @FXML
-    public void adicionarFuncionario() {
-        String nome = txtNomeFuncionario.getText();
-        String login = txtLoginFuncionario.getText();
-        String senha = txtSenhaFuncionario.getText();
-        String cargo = txtCargoFuncionario.getText();
+    public void inicializar() {
+        Fachada fachada = Fachada.getInstance();
+        Funcionario[] auxConta = fachada.getListaContas();
+        Funcionario  cadastro = SceneManager.getInstance().getPerfilAdmController().getCadastro();
+        ListaUsuarios.getItems().clear();
+        contas = auxConta;
 
-        if (nome.isEmpty() || login.isEmpty() || senha.isEmpty() || cargo.isEmpty()) {
-            Alert alerta = new Alert(Alert.AlertType.ERROR);
-            alerta.setHeaderText("Campos obrigatórios");
-            alerta.setContentText("Preencha todos os campos para adicionar o funcionário.");
-            alerta.showAndWait();
-            return;
+        for(int i = 0; i < auxConta.length; i++){
+            if(auxConta[i] != null && (cadastro == null || !auxConta[i].compareTo(cadastro))){
+                ListaUsuarios.getItems().add(auxConta[i].adicionarNaLista());
+            }
         }
 
-        //Funcionario funcionario = new Funcionario(nome, login, senha, cargo);
-        //listaFuncionarios.add(funcionario);
-
-        limparCampos();
-
-        Alert sucesso = new Alert(Alert.AlertType.INFORMATION);
-        sucesso.setHeaderText(null);
-        sucesso.setContentText("Funcionário adicionado com sucesso!");
-        sucesso.showAndWait();
-    }
-
-    private void limparCampos() {
-        txtNomeFuncionario.clear();
-        txtLoginFuncionario.clear();
-        txtSenhaFuncionario.clear();
-        txtCargoFuncionario.clear();
+        ListaUsuarios.getSelectionModel().selectedItemProperty().addListener( new ChangeListener<String>(){
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                SceneManager.getInstance().changeScreen("PerfilFuncionario.fxml", "Perfil - Funcionário");
+                Funcionario auxConta = null;
+                for(int i = 0; i < contas.length; i++){
+                    if(contas[i] != null && t1.equals(contas[i].adicionarNaLista())){
+                        auxConta = contas[i];
+                        break;
+                    }
+                }
+                SceneManager.getInstance().getPerfilAdmController().initialize(auxConta);
+            }
+        });
     }
 
     @FXML
-    public void voltar() {
-        try {
-            FXMLLoader loader = new FXMLLoader(Objects.requireNonNull(getClass().getResource("/com/example/bibliotecafx/dashboard.fxml")));
-            Parent root = loader.load();
-
-            Stage stage = (Stage) txtNomeFuncionario.getScene().getWindow();
-            stage.setScene(new Scene(root));
-            stage.setTitle("Menu Principal");
-            stage.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            Alert erro = new Alert(Alert.AlertType.ERROR);
-            erro.setHeaderText("Erro ao voltar");
-            erro.setContentText("Verifique se o arquivo dashboard.fxml está correto.");
-            erro.showAndWait();
-        }
+    void HandleAdm(ActionEvent event){
+        SceneManager.getInstance().changeScreen("TelaCadastroAdm.fxml",
+                "Cadastro");
     }
+
+    @FXML
+    void HandleAtdnt(ActionEvent event){
+        SceneManager.getInstance().changeScreen("TelaCadastroAtdnt.fxml",
+                "Cadastro");
+    }
+
+
+
 }

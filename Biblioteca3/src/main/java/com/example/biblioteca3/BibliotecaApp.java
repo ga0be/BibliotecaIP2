@@ -2,6 +2,8 @@ package com.example.biblioteca3;
 
 
 import com.example.biblioteca3.Controllers.SceneManager;
+import com.example.biblioteca3.Negocio.CadastroFuncionario;
+import com.example.biblioteca3.Negocio.Fachada;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,6 +25,17 @@ public class BibliotecaApp extends Application {
     }
 
     public static void main(String[] args) {
+
+        Fachada fachada = Fachada.getInstance();
+
+        try{
+            fachada.cadastrarAdministrador("Sammuel", "Adm aux", "bradalsb", "Cigarropreto", "182927", 1650.0);;}
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println(fachada.listarContas());
+
         BibliotecaApp.launch(args);
     }
 }

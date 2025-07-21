@@ -4,6 +4,7 @@ package com.example.biblioteca3.Negocio;
 import com.example.biblioteca3.Dados.RepositorioFuncionario;
 import com.example.biblioteca3.Exceptions.Conta.ContaJaExisteException;
 import com.example.biblioteca3.Exceptions.Conta.ContaNaoExisteException;
+import com.example.biblioteca3.Exceptions.OperacaoBemSucedidaException;
 import com.example.biblioteca3.Exceptions.RepositorioCheioException;
 import com.example.biblioteca3.Negocio.ClassesBasicas.Administrador;
 import com.example.biblioteca3.Negocio.ClassesBasicas.Atendente;
@@ -28,19 +29,23 @@ public class CadastroFuncionario {
     }
 
     public void cadastrarAtendente(String nome, String cargo, String login, String senha, String cpf, String turno, double remuneracao, double horas) throws
-            ContaJaExisteException, RepositorioCheioException {
+            ContaJaExisteException, RepositorioCheioException, OperacaoBemSucedidaException {
 
         Funcionario atendente = new Atendente(nome, cargo, login, senha, cpf, ultimoId + 1, turno, remuneracao, horas);
         this.ultimoId++;
         this.repositorio.adicionarFuncionario(atendente);
+
+        throw new OperacaoBemSucedidaException();
     }
 
     public void cadastrarAdministrador(String nome, String cargo, String login, String senha, String cpf, double salario) throws
-            ContaJaExisteException, RepositorioCheioException{
+            ContaJaExisteException, RepositorioCheioException, OperacaoBemSucedidaException {
 
         Funcionario administrador = new Administrador(nome, cargo, login, senha, cpf, ultimoId + 1, salario);
         this.ultimoId++;
         this.repositorio.adicionarFuncionario(administrador);
+
+        throw new OperacaoBemSucedidaException();
     }
 
     public void removerFuncionario(int funcionarioId) throws ContaNaoExisteException {
@@ -49,6 +54,18 @@ public class CadastroFuncionario {
 
     public Funcionario buscarFuncionario(int FuncionarioId) throws ContaNaoExisteException{
         return repositorio.buscarFuncionario(FuncionarioId);
+    }
+
+    public Funcionario buscarContaPeloLogin(String login) throws ContaNaoExisteException{
+        return repositorio.buscarPeloLogin(login);
+    }
+
+    public Funcionario buscarContaPeloCpf(String cpf) throws ContaNaoExisteException {
+        return repositorio.buscarPeloCpf(cpf);
+    }
+
+    public Funcionario[] getListaContas(){
+        return repositorio.getListaContas();
     }
 
     public void atualizarAdm(String nome, String cargo, String login, String senha, String cpf, int idFuncionario, double salario) throws ContaNaoExisteException, RepositorioCheioException {

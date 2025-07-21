@@ -73,6 +73,25 @@ public class RepositorioFuncionario implements RepositorioFucionarioInterface {
 
     }
 
+    public Funcionario buscarPeloLogin(String login) throws ContaNaoExisteException{
+        for(int i = 0; i < this.funcionariosIndex; i++){
+            if(this.funcionarios[i].getLogin().equals(login)){
+                return funcionarios[i];
+            }
+        }
+        throw new ContaNaoExisteException();
+    }
+
+    public Funcionario buscarPeloCpf(String cpf) throws ContaNaoExisteException{
+        for(int i = 0; i < this.funcionariosIndex; i++){
+            if(this.funcionarios[i].getCpf().equals(cpf)){
+                return funcionarios[i];
+            }
+        }
+        throw new ContaNaoExisteException();
+    }
+
+
     public Funcionario buscarFuncionario(int idFuncionario) throws ContaNaoExisteException{
         int aux = this.buscarIndexFuncionario(idFuncionario);
 
@@ -83,6 +102,16 @@ public class RepositorioFuncionario implements RepositorioFucionarioInterface {
         int aux = this.buscarIndexFuncionario(conta.getIdFuncionario());
 
         funcionarios[aux] = conta;
+    }
+
+    public Funcionario[] getListaContas(){
+        Funcionario[] auxContas = new Funcionario[funcionariosIndex];
+
+        for(int i = 0; i < this.funcionariosIndex; i++){
+            auxContas[i] = funcionarios[i];
+        }
+
+        return auxContas;
     }
 
     public String toString(){

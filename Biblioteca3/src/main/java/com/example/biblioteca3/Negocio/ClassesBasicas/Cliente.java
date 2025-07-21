@@ -76,6 +76,11 @@ public class Cliente {
         return Objects.equals(getNome(), cliente.getNome()) && Objects.equals(getCpf(), cliente.getCpf()) && Objects.equals(getEndereco(), cliente.getEndereco()) && Objects.equals(getTelefone(), cliente.getTelefone()) && Objects.equals(getEmail(), cliente.getEmail());
     }
 
+    public String adicionarNaLista(){
+            return "Cliente: " + this.getNome()+ " / ID: " + this.getIdCliente() + " / CPF: " + this.getCpf();
+
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(getNome(), getCpf(), getEndereco(), getTelefone(), getEmail());
