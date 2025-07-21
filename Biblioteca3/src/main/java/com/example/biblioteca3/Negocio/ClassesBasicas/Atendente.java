@@ -42,7 +42,7 @@ public class Atendente extends Funcionario {
         if (getHoras() >= 30) {
             return getRemuneracao() * getHoras();}
         else {
-            return getRemuneracao() * (getHoras() - 30) * 2.0 + getRemuneracao() * 30;}
+            return getRemuneracao() * (30 - getHoras()) * 2.0 + getRemuneracao() * 30;}
     }
 
     public String toString() {
