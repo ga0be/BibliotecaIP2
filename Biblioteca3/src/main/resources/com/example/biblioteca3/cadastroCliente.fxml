@@ -24,7 +24,6 @@
                         <Button fx:id="btnSalvar" mnemonicParsing="false" onAction="#salvarCliente" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Salvar" />
                   <Separator orientation="VERTICAL" prefHeight="200.0" />
                         <Button fx:id="btnLimpar" mnemonicParsing="false" onAction="#limparCampos" prefHeight="30.0" prefWidth="90.0" style="-fx-background-color: #3F51B5; -fx-background-radius: 6; -fx-text-fill: #ffffff;" text="Limpar" />
-                  <Separator orientation="VERTICAL" prefHeight="200.0" />
                </children>
                 </HBox>
                 <TextField fx:id="txtNome" prefHeight="30.0" prefWidth="250.0" promptText="Nome">
